@@ -11,9 +11,11 @@ user_index = 0
 def introduction_prompt():
     global user_index
     while user_index == 0:
+        print("========================================================================")
         for i in maps_capitalize:
             print(f"{i}", end = " ")
         print()
+        print("========================================================================")
         user_input = input("Select A Map (Q to Quit): ").lower()
         if user_input == "q":
             break
@@ -45,7 +47,8 @@ def site_selection_prompt(map_input):
     else:
         print("Invalid input.")
 
-def init():
+def main():
     introduction_prompt()
 
-init()
+if __name__ == '__main__':
+    main()

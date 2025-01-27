@@ -1,7 +1,8 @@
 import sys
 import requests
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import QApplication, QWidget, QLineEdit, QPushButton
 from PyQt5.QtCore import Qt
+import maps
 
 # DICTIONARY CONTAINING MAPS UUID
 maps_dict = {
@@ -25,18 +26,37 @@ maps_dict = {
 
 base_url = "https://valorant-api.com/v1/maps"
 
-class SiteRoller(QWidget):
+class Application(QWidget):
     def __init__(self):
         super().__init__()
+        self.setGeometry(1200,400,500,500)
+        self.line_edit = QLineEdit(self)
+        self.button = QPushButton("Roll", self)
+        self.line_edit.setPlaceholderText("Map Name")
+        self.initUI()
+
+    def initUI(self):
+        self.line_edit.setStyleSheet("font-size: 25px;"
+                                     "font-family: Arial;")
+        self.button.setStyleSheet("font-size: 25px;"
+                                  "font-family: Arial;"
+                                  "font-weight: Bold;")
+        self.line_edit.setGeometry(10, 10, 200, 40)
+        self.button.setGeometry(210,10,100,40)
+        self.button.clicked.connect(self.button_press)
+
+    def button_press(self):
+        user_input = self.line_edit.text()
+        maps.random_site(user_input.lower())
 
 def init_window():
     app = QApplication(sys.argv)
-    site_roller = SiteRoller()
-    site_roller.show()
+    application = Application()
+    application.show()
     sys.exit(app.exec_())
 
 def get_map_info(uuid):
-    url = f"{base_url}/{map_uuid}"
+    url = f"{base_url}/{uuid}"
     print(f"Acquiring data from '{url}'...")
     response = requests.get(url)
 
@@ -53,6 +73,7 @@ def get_map_info(uuid):
 if __name__ == '__main__':
     map_uuid = "7eaecc1b-4337-bbf6-6ab9-04b8f06b3319"
     map_info = get_map_info(map_uuid)
-    print(f"{map_info['data']}")
-    print(f"{map_info['data']['displayName']}")
-    print(len(maps_dict))
+    #print(f"{map_info['data']}")
+    print(f"{map_info['data']['displayName'].lower()}")
+    #maps.random_site(map_info['data']['displayName'].lower())
+    init_window()

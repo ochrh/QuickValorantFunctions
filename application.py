@@ -74,6 +74,5 @@ if __name__ == '__main__':
     map_uuid = "7eaecc1b-4337-bbf6-6ab9-04b8f06b3319"
     map_info = get_map_info(map_uuid)
     #print(f"{map_info['data']}")
-    print(f"{map_info['data']['displayName'].lower()}")
     #maps.random_site(map_info['data']['displayName'].lower())
     init_window()

@@ -6,7 +6,7 @@ The **Valorant Site Roller** is a simple application that helps players decide w
 Built with **Python** and **PyQt5**, this tool provides a lightweight UI to quickly roll for a site selection.  
 
 ## 🖼️ Preview  
-![Valorant Site Roller Preview](https://i.imgur.com/0lKqczP.png)  
+![Valorant Site Roller Preview](https://i.imgur.com/mOnk8wP.jpeg)  
 
 ## 🛠️ Technologies Used  
 - 🐍 **Python**  
